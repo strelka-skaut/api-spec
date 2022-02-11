@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option csharp_namespace = "Api";
+
+package main;
+
+service PageService {
+  rpc CreatePage (PageServiceCreatePageRequest) returns (PageServiceCreatePageResponse);
+  rpc GetPage (PageServiceGetPageRequest) returns (PageServiceGetPageResponse);
+  rpc GetPages (PageServiceGetPagesRequest) returns (PageServiceGetPagesResponse);
+}
+
+message PageServiceCreatePageRequest {
+  string title = 2;
+  string content = 3;
+}
+
+message PageServiceCreatePageResponse {
+  
+}
+
+message PageServiceGetPageRequest {
+  int32 page_id = 1;
+}
+
+message PageServiceGetPageResponse {
+  Page page = 1;
+}
+
+message PageServiceGetPagesRequest {
+  // todo filter = 1;
+  repeated Sort sort = 2;
+
+  int32 offset = 3;
+  int32 limit = 4;
+}
+
+message PageServiceGetPagesResponse {
+  repeated Page pages = 1;
+}
+
+message Page {
+  int32 id = 1;
+  string title = 2;
+  string content = 3;
+  string author_id = 4;
+  int64 created_at = 5;
+}
+
+message Sort {
+  string field = 1;
+  Order order = 2;
+
+  enum Order {
+    ASC = 0;
+    DESC = 1;
+  }
+}
