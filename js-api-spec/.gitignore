@@ -3,4 +3,5 @@ dist/*
 !dist/.gitkeep
 dist-proto/*
 !dist-proto/.gitkeep
-src/api_*
+src/*.js
+src/*.d.ts

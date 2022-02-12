@@ -5,12 +5,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>CSharpApiSpec</PackageId>
-        <Version>1.0.7</Version>
+        <Version>1.0.8</Version>
         <RepositoryUrl>https://github.com/strelka-skaut/api-spec</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf Include="../../protobuf/api.proto" GrpcServices="Server" />
+        <Protobuf Include="../../protobuf/*" ProtoRoot="../../protobuf/" GrpcServices="Server" />
     </ItemGroup>
 
     <ItemGroup>
