@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package media;
+
+import "common.proto";
+
+option csharp_namespace = "ApiSpec.Grpc.Media";
+
+service Service {
+  rpc CreateGallery (CreateGalleryRequest) returns (CreateGalleryResponse);
+  rpc GetGallery (GetGalleryRequest) returns (GetGalleryResponse);
+  rpc GetGalleries (GetGalleriesRequest) returns (GetGalleriesResponse);
+  rpc DeleteGallery (DeleteGalleryRequest) returns (DeleteGalleryResponse);
+  
+  rpc GetGalleryPhotos (GetGalleryPhotosRequest) returns (GetGalleryPhotosRequest);
+  rpc SyncGalleryPhotos (SyncGalleryPhotosRequest) returns (SyncGalleryPhotosResponse);
+  
+  rpc GetFileUrl(GetFileUrlRequest) returns (GetFileUrlResponse);
+  rpc GetPhotoThumbnailUrls(GetPhotoThumbnailUrlsRequest) returns (GetPhotoThumbnailUrlsResponse);
+}
+
+message CreateGalleryRequest {
+  string name = 1;
+  string slug = 2;
+  optional string gdrive_folder_id = 3;
+  optional common.Uuid site_id = 4;
+}
+
+message CreateGalleryResponse {
+  common.Uuid id = 1;
+}
+
+message DeleteGalleryRequest {
+  common.Uuid gallery_id = 1;
+}
+
+message DeleteGalleryResponse {}
+
+message GetGalleryRequest {
+  common.Uuid gallery_id = 1;
+}
+
+message GetGalleryResponse {
+  Gallery gallery = 1;
+}
+
+message GetGalleriesRequest {
+  optional int32 offset = 1;
+  optional int32 limit = 2;
+
+  repeated common.Sort sort = 3;
+  // todo filters
+}
+
+message GetGalleriesResponse {
+  repeated Gallery galleries = 1;
+}
+
+message Gallery {
+  common.Uuid id = 1;
+  string name = 2;
+  string slug = 3;
+  optional string gdrive_folder_id = 4;
+  optional common.Uuid site_id = 5;
+  
+  message Photo {
+    common.Uuid id = 1;
+    string gdrive_file_id = 2; 
+    int32 order = 3;
+    string caption = 4;
+    bool broken = 5;
+  }
+}
+
+message GetGalleryPhotosRequest {
+  common.Uuid gallery_id = 1;
+  bool include_broken = 2;
+  
+  optional int32 offset = 3;
+  optional int32 limit = 4;
+}
+
+message GetGalleryPhotosResponse {
+  repeated Gallery.Photo photos = 1;
+}
+
+message SyncGalleryPhotosRequest {
+  common.Uuid gallery_id = 1;
+}
+
+message SyncGalleryPhotosResponse {}
+
+message GetFileUrlRequest {
+  string gdrive_file_id = 1;
+}
+
+message GetFileUrlResponse {
+  string url = 1;
+}
+
+message GetPhotoThumbnailUrlsRequest {
+  repeated string gdrive_file_ids = 1;
+  oneof max_size {
+    int32 width = 2;
+    int32 height = 3;
+  }
+}
+
+message GetPhotoThumbnailUrlsResponse {
+  repeated string urls = 1;
+}
