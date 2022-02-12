@@ -1,5 +1,5 @@
 {
-  "name": "@strelka-skaut/js-api-spec",
+  "name": "@strelka-skaut/js-api-client",
   "version": "1.0.13",
   "description": "",
   "main": "dist/index.js",
@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:proto && npm run build:tsc",
-    "build:proto": "protoc -I=../protobuf ../protobuf/*.proto --js_out=import_style=commonjs,binary:dist-proto/ && cp dist-proto/* dist/ && cp dist-proto/* src/",
+    "build:proto": "protoc -I=../protobuf ../protobuf/*.proto --js_out=import_style=commonjs,binary:dist-proto/ --grpc-web_out=import_style=typescript,mode=grpcweb:dist-proto/ && cp dist-proto/* dist/ && cp dist-proto/* src/ && cp src/xhr2-loader* dist/",
     "build:tsc": "tsc"
   },
   "author": "",
@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "google-protobuf": "^3.19.4",
-    "grpc-web": "^1.3.1"
+    "grpc-web": "^1.3.1",
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "@types/google-protobuf": "^3.15.5",

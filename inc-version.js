@@ -18,8 +18,13 @@ for(let file of csprojFiles)
 		});
 	}).join("\n"));
 
-const packageJsonFile = "js-api-spec/package.json";
+const packageJsonFiles = [
+	"js-api-spec/package.json",
+	"js-api-client/package.json",
+];
 
-let package = JSON.parse(fs.readFileSync(packageJsonFile, "utf8"));
-package.version = incPatch(package.version);
-fs.writeFileSync(packageJsonFile, JSON.stringify(package, null, "  "));
+for(let file of packageJsonFiles) {
+	let package = JSON.parse(fs.readFileSync(file, "utf8"));
+	package.version = incPatch(package.version);
+	fs.writeFileSync(file, JSON.stringify(package, null, "  "));
+}
