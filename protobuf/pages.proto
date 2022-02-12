@@ -5,7 +5,7 @@ package pages;
 import "common.proto";
 import "google/protobuf/timestamp.proto";
 
-option csharp_namespace = "Api.Grpc.Pages";
+option csharp_namespace = "ApiSpec.Grpc.Pages";
 
 service Service {
   rpc CreatePage (CreatePageRequest) returns (CreatePageResponse);

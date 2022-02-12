@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package common;
 
-option csharp_namespace = "Api.Grpc";
+option csharp_namespace = "ApiSpec.Grpc";
 
 message Uuid {
   string value = 1;
