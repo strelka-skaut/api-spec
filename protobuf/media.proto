@@ -12,7 +12,7 @@ service Service {
   rpc GetGalleries (GetGalleriesRequest) returns (GetGalleriesResponse);
   rpc DeleteGallery (DeleteGalleryRequest) returns (DeleteGalleryResponse);
   
-  rpc GetGalleryPhotos (GetGalleryPhotosRequest) returns (GetGalleryPhotosRequest);
+  rpc GetGalleryPhotos (GetGalleryPhotosRequest) returns (GetGalleryPhotosResponse);
   rpc SyncGalleryPhotos (SyncGalleryPhotosRequest) returns (SyncGalleryPhotosResponse);
   
   rpc GetFileUrl(GetFileUrlRequest) returns (GetFileUrlResponse);
@@ -75,6 +75,7 @@ message Gallery {
 message GetGalleryPhotosRequest {
   common.Uuid gallery_id = 1;
   bool include_broken = 2;
+  
   
   optional int32 offset = 3;
   optional int32 limit = 4;
