@@ -7,13 +7,16 @@ function incPatch(ver) {
 	return [major, minor, patch].join(".");
 }
 
-const csprojFile = "CSharpApiSpec/CSharpApiSpec/CSharpApiSpec.csproj";
-
-fs.writeFileSync(csprojFile, fs.readFileSync(csprojFile, "utf8").split("\n").map(line => {
-	return line.replace(/<Version>(.+)<\/Version>/, ($0, $1) => {
-		return `<Version>${incPatch($1)}</Version>`;
-	});
-}).join("\n"));
+const csprojFiles = [
+	"CSharpApiSpec/CSharpApiSpec/CSharpApiSpec.csproj",
+	"CSharpApiClient/CSharpApiClient/CSharpApiClient.csproj"
+];
+for(let file of csprojFiles)
+	fs.writeFileSync(file, fs.readFileSync(file, "utf8").split("\n").map(line => {
+		return line.replace(/<Version>(.+)<\/Version>/, ($0, $1) => {
+			return `<Version>${incPatch($1)}</Version>`;
+		});
+	}).join("\n"));
 
 const packageJsonFile = "js-api-spec/package.json";
 
