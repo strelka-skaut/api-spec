@@ -11,6 +11,8 @@ service Service {
   rpc GetGallery (GetGalleryRequest) returns (GetGalleryResponse);
   rpc GetGalleries (GetGalleriesRequest) returns (GetGalleriesResponse);
   rpc DeleteGallery (DeleteGalleryRequest) returns (DeleteGalleryResponse);
+
+  // rpc CreateGdriveFolderForGallery (CreateGdriveFolderForGalleryRequest) returns (CreateGdriveFolderForGalleryResponse);
   
   rpc GetGalleryPhotos (GetGalleryPhotosRequest) returns (GetGalleryPhotosResponse);
   rpc SyncGalleryPhotos (SyncGalleryPhotosRequest) returns (SyncGalleryPhotosResponse);
@@ -22,7 +24,7 @@ service Service {
 message CreateGalleryRequest {
   string name = 1;
   string slug = 2;
-  optional string gdrive_folder_id = 3;
+  string gdrive_folder_id = 3;
   optional common.Uuid site_id = 4;
 }
 
@@ -109,4 +111,13 @@ message GetPhotoThumbnailUrlsRequest {
 
 message GetPhotoThumbnailUrlsResponse {
   repeated string urls = 1;
+}
+
+message CreateGdriveFolderForGalleryRequest {
+  string name = 1;
+  common.Uuid site_id = 2;
+}
+
+message CreateGdriveFolderForGalleryResponse {
+  string gdrive_folder_id = 1;
 }
