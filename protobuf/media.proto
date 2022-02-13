@@ -62,7 +62,7 @@ message Gallery {
   common.Uuid id = 1;
   string name = 2;
   string slug = 3;
-  optional string gdrive_folder_id = 4;
+  string gdrive_folder_id = 4;
   optional common.Uuid site_id = 5;
   
   message Photo {

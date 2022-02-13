@@ -21,6 +21,18 @@ message CreatePageRequest {
   string slug = 4;
 }
 
+message UpdatePageRequest {
+  optional string name = 1;
+  optional string content = 2;
+  bool has_site_id = 3;
+  optional common.Uuid site_id = 4;
+  optional string slug = 5;
+}
+
+message UpdatePageResponse {
+
+}
+
 message CreatePageResponse {
   common.Uuid id = 1;
 }
