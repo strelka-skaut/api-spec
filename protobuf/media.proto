@@ -9,7 +9,9 @@ option csharp_namespace = "ApiSpec.Grpc.Media";
 service Service {
   rpc CreateGallery (CreateGalleryRequest) returns (CreateGalleryResponse);
   rpc GetGallery (GetGalleryRequest) returns (GetGalleryResponse);
+  rpc GetGalleryBySlug (GetGalleryBySlugRequest) returns (GetGalleryBySlugResponse);
   rpc GetGalleries (GetGalleriesRequest) returns (GetGalleriesResponse);
+  rpc UpdateGallery (UpdateGalleryRequest) returns (UpdateGalleryResponse);
   rpc DeleteGallery (DeleteGalleryRequest) returns (DeleteGalleryResponse);
 
   // rpc CreateGdriveFolderForGallery (CreateGdriveFolderForGalleryRequest) returns (CreateGdriveFolderForGalleryResponse);
@@ -20,6 +22,26 @@ service Service {
   rpc GetFileUrl(GetFileUrlRequest) returns (GetFileUrlResponse);
   rpc GetPhotoThumbnailUrls(GetPhotoThumbnailUrlsRequest) returns (GetPhotoThumbnailUrlsResponse);
 }
+
+// DTOs
+
+message Gallery {
+  common.Uuid id = 1;
+  string name = 2;
+  string slug = 3;
+  string gdrive_folder_id = 4;
+  optional common.Uuid site_id = 5;
+
+  message Photo {
+    common.Uuid id = 1;
+    string gdrive_file_id = 2;
+    int32 order = 3;
+    string caption = 4;
+    bool broken = 5;
+  }
+}
+
+// CreateGallery
 
 message CreateGalleryRequest {
   string name = 1;
@@ -32,11 +54,7 @@ message CreateGalleryResponse {
   common.Uuid id = 1;
 }
 
-message DeleteGalleryRequest {
-  common.Uuid gallery_id = 1;
-}
-
-message DeleteGalleryResponse {}
+// GetGallery
 
 message GetGalleryRequest {
   common.Uuid gallery_id = 1;
@@ -45,6 +63,18 @@ message GetGalleryRequest {
 message GetGalleryResponse {
   Gallery gallery = 1;
 }
+
+// GetGalleryBySlug
+
+message GetGalleryBySlugRequest {
+  string gallery_slug = 1;
+}
+
+message GetGalleryBySlugResponse {
+  Gallery gallery = 1;
+}
+
+// GetGalleries
 
 message GetGalleriesRequest {
   optional int32 offset = 1;
@@ -58,21 +88,31 @@ message GetGalleriesResponse {
   repeated Gallery galleries = 1;
 }
 
-message Gallery {
-  common.Uuid id = 1;
-  string name = 2;
-  string slug = 3;
-  string gdrive_folder_id = 4;
-  optional common.Uuid site_id = 5;
-  
-  message Photo {
-    common.Uuid id = 1;
-    string gdrive_file_id = 2; 
-    int32 order = 3;
-    string caption = 4;
-    bool broken = 5;
-  }
+// UpdateGallery
+
+message UpdateGalleryRequest {
+  common.Uuid gallery_id = 1;
+
+  optional string name = 2;
+  optional string slug = 3;
+  optional string gdrive_folder_id = 4;
+  bool has_site_id = 5;
+  optional common.Uuid site_id = 6;
 }
+
+message UpdateGalleryResponse {
+
+}
+
+// DeleteGallery
+
+message DeleteGalleryRequest {
+  common.Uuid gallery_id = 1;
+}
+
+message DeleteGalleryResponse {}
+
+// GetGalleryPhotos
 
 message GetGalleryPhotosRequest {
   common.Uuid gallery_id = 1;
@@ -87,11 +127,15 @@ message GetGalleryPhotosResponse {
   repeated Gallery.Photo photos = 1;
 }
 
+// SyncGalleryPhotos
+
 message SyncGalleryPhotosRequest {
   common.Uuid gallery_id = 1;
 }
 
 message SyncGalleryPhotosResponse {}
+
+// GetFileUrl
 
 message GetFileUrlRequest {
   string gdrive_file_id = 1;
@@ -100,6 +144,8 @@ message GetFileUrlRequest {
 message GetFileUrlResponse {
   string url = 1;
 }
+
+// GetPhotoThumbnailUrls
 
 message GetPhotoThumbnailUrlsRequest {
   repeated string gdrive_file_ids = 1;
@@ -112,6 +158,8 @@ message GetPhotoThumbnailUrlsRequest {
 message GetPhotoThumbnailUrlsResponse {
   repeated string urls = 1;
 }
+
+// CreteGdriveFolderForGallery
 
 message CreateGdriveFolderForGalleryRequest {
   string name = 1;

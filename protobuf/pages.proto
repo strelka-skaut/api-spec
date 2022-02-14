@@ -10,9 +10,26 @@ option csharp_namespace = "ApiSpec.Grpc.Pages";
 service Service {
   rpc CreatePage (CreatePageRequest) returns (CreatePageResponse);
   rpc GetPage (GetPageRequest) returns (GetPageResponse);
+  rpc GetPageBySlug (GetPageBySlugRequest) returns (GetPageBySlugResponse);
   rpc GetPages (GetPagesRequest) returns (GetPagesResponse);
+  rpc UpdatePage (UpdatePageRequest) returns (UpdatePageResponse);
   rpc DeletePage (DeletePageRequest) returns (DeletePageResponse);
 }
+
+// DTOs
+
+message Page {
+  common.Uuid id = 1;
+  string name = 2;
+  string content = 3;
+  google.protobuf.Timestamp updated_at = 4;
+  common.Uuid updated_user_id = 5;
+  optional common.Uuid site_id = 6;
+  string slug = 7;
+}
+
+
+// CreatePage
 
 message CreatePageRequest {
   string name = 1;
@@ -21,21 +38,11 @@ message CreatePageRequest {
   string slug = 4;
 }
 
-message UpdatePageRequest {
-  optional string name = 1;
-  optional string content = 2;
-  bool has_site_id = 3;
-  optional common.Uuid site_id = 4;
-  optional string slug = 5;
-}
-
-message UpdatePageResponse {
-
-}
-
 message CreatePageResponse {
   common.Uuid id = 1;
 }
+
+// GetPage
 
 message GetPageRequest {
   common.Uuid page_id = 1;
@@ -44,6 +51,18 @@ message GetPageRequest {
 message GetPageResponse {
   Page page = 1;
 }
+
+// GetPageBySlug
+
+message GetPageBySlugRequest {
+  string page_slug = 1;
+}
+
+message GetPageBySlugResponse {
+  Page page = 1;
+}
+
+// GetPages
 
 message GetPagesRequest {
   optional int32 offset = 1;
@@ -57,6 +76,24 @@ message GetPagesResponse {
   repeated Page pages = 1;
 }
 
+// UpdatePage
+
+message UpdatePageRequest {
+  common.Uuid page_id = 6;
+
+  optional string name = 1;
+  optional string content = 2;
+  bool has_site_id = 3;
+  optional common.Uuid site_id = 4;
+  optional string slug = 5;
+}
+
+message UpdatePageResponse {
+
+}
+
+// DeletePage
+
 message DeletePageRequest {
   common.Uuid page_id = 1;
 }
@@ -64,12 +101,3 @@ message DeletePageRequest {
 message DeletePageResponse {
 }
 
-message Page {
-  common.Uuid id = 1;
-  string name = 2;
-  string content = 3;
-  google.protobuf.Timestamp updated_at = 4;
-  common.Uuid updated_user_id = 5;
-  optional common.Uuid site_id = 6;
-  string slug = 7;
-}

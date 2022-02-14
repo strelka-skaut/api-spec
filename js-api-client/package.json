@@ -1,13 +1,13 @@
 {
   "name": "@strelka-skaut/js-api-client",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:protoc && npm run build:copy-proto && npm run build:copy-js && npm run build:tsc",
-    "build:protoc": "protoc -I=../protobuf ../protobuf/*.proto --js_out=import_style=commonjs,binary:dist-proto/ --grpc-web_out=import_style=typescript,mode=grpcweb:dist-proto/",
+    "build:protoc": "rm dist-proto/* && protoc -I=../protobuf ../protobuf/*.proto --js_out=import_style=commonjs,binary:dist-proto/ --grpc-web_out=import_style=typescript,mode=grpcweb:dist-proto/",
     "build:copy-proto": "cp dist-proto/* dist/ && cp dist-proto/* src/",
     "build:copy-js": "cp src/xhr2-loader* dist/",
     "build:tsc": "tsc"
