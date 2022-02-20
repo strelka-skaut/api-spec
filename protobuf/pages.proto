@@ -11,6 +11,7 @@ service Service {
   rpc CreatePage (CreatePageRequest) returns (CreatePageResponse);
   rpc GetPage (GetPageRequest) returns (GetPageResponse);
   rpc GetPageBySlug (GetPageBySlugRequest) returns (GetPageBySlugResponse);
+  rpc GetPageBySiteAndSlug (GetPageBySiteAndSlugRequest) returns (GetPageBySiteAndSlugResponse);
   rpc GetPages (GetPagesRequest) returns (GetPagesResponse);
   rpc UpdatePage (UpdatePageRequest) returns (UpdatePageResponse);
   rpc DeletePage (DeletePageRequest) returns (DeletePageResponse);
@@ -59,6 +60,17 @@ message GetPageBySlugRequest {
 }
 
 message GetPageBySlugResponse {
+  Page page = 1;
+}
+
+// GetPageBySiteAndSlug
+
+message GetPageBySiteAndSlugRequest {
+  optional common.Uuid site_id = 1;
+  string page_slug = 2;
+}
+
+message GetPageBySiteAndSlugResponse {
   Page page = 1;
 }
 
