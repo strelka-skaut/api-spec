@@ -11,6 +11,7 @@ service Service {
   rpc GetSite (GetSiteRequest) returns (GetSiteResponse);
   rpc GetSiteBySlug (GetSiteBySlugRequest) returns (GetSiteBySlugResponse);
   rpc GetSites (GetSitesRequest) returns (GetSitesResponse);
+  rpc CountSites (CountSitesRequest) returns (CountSitesResponse);
   rpc UpdateSite (UpdateSiteRequest) returns (UpdateSiteResponse);
   rpc DeleteSite (DeleteSiteRequest) returns (DeleteSiteResponse);
 }
@@ -66,6 +67,16 @@ message GetSitesRequest {
 
 message GetSitesResponse {
   repeated Site sites = 1;
+}
+
+// CountSites
+
+message CountSitesRequest {
+  // todo filters
+}
+
+message CountSitesResponse {
+  int32 count = 1;
 }
 
 // UpdateSite

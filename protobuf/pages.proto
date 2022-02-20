@@ -13,6 +13,7 @@ service Service {
   rpc GetPageBySlug (GetPageBySlugRequest) returns (GetPageBySlugResponse);
   rpc GetPageBySiteAndSlug (GetPageBySiteAndSlugRequest) returns (GetPageBySiteAndSlugResponse);
   rpc GetPages (GetPagesRequest) returns (GetPagesResponse);
+  rpc CountPages (CountPagesRequest) returns (CountPagesResponse);
   rpc UpdatePage (UpdatePageRequest) returns (UpdatePageResponse);
   rpc DeletePage (DeletePageRequest) returns (DeletePageResponse);
 }
@@ -86,6 +87,16 @@ message GetPagesRequest {
 
 message GetPagesResponse {
   repeated Page pages = 1;
+}
+
+// CountPages
+
+message CountPagesRequest {
+  // todo filters
+}
+
+message CountPagesResponse {
+  int32 count = 1;
 }
 
 // UpdatePage

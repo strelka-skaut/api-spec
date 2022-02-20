@@ -11,6 +11,7 @@ service Service {
   rpc GetGallery (GetGalleryRequest) returns (GetGalleryResponse);
   rpc GetGalleryBySlug (GetGalleryBySlugRequest) returns (GetGalleryBySlugResponse);
   rpc GetGalleries (GetGalleriesRequest) returns (GetGalleriesResponse);
+  rpc CountGalleries (CountGalleriesRequest) returns (CountGalleriesResponse);
   rpc UpdateGallery (UpdateGalleryRequest) returns (UpdateGalleryResponse);
   rpc DeleteGallery (DeleteGalleryRequest) returns (DeleteGalleryResponse);
 
@@ -86,6 +87,16 @@ message GetGalleriesRequest {
 
 message GetGalleriesResponse {
   repeated Gallery galleries = 1;
+}
+
+// CountGalleries
+
+message CountGalleriesRequest {
+  // todo filters
+}
+
+message CountGalleriesResponse {
+  int32 count = 1;
 }
 
 // UpdateGallery
