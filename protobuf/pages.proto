@@ -28,6 +28,7 @@ message Page {
   common.Uuid updated_user_id = 5;
   optional common.Uuid site_id = 6;
   string slug = 7;
+  optional common.Uuid parent_id = 8;
 }
 
 
@@ -38,6 +39,7 @@ message CreatePageRequest {
   string content = 2;
   optional common.Uuid site_id = 3;
   string slug = 4;
+  optional common.Uuid parent_id = 5;
 }
 
 message CreatePageResponse {
@@ -109,6 +111,8 @@ message UpdatePageRequest {
   bool has_site_id = 3;
   optional common.Uuid site_id = 4;
   optional string slug = 5;
+  bool has_parent_id = 6;
+  optional common.Uuid parent_id = 7;
 }
 
 message UpdatePageResponse {
