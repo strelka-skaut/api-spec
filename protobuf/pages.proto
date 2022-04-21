@@ -29,6 +29,7 @@ message Page {
   optional common.Uuid site_id = 6;
   string slug = 7;
   optional common.Uuid parent_id = 8;
+  string role = 9;
 }
 
 
@@ -40,6 +41,7 @@ message CreatePageRequest {
   optional common.Uuid site_id = 3;
   string slug = 4;
   optional common.Uuid parent_id = 5;
+  string role = 6;
 }
 
 message CreatePageResponse {
@@ -113,6 +115,7 @@ message UpdatePageRequest {
   optional string slug = 5;
   bool has_parent_id = 7;
   optional common.Uuid parent_id = 8;
+  string role = 9;
 }
 
 message UpdatePageResponse {
