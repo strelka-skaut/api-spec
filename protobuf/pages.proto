@@ -111,8 +111,8 @@ message UpdatePageRequest {
   bool has_site_id = 3;
   optional common.Uuid site_id = 4;
   optional string slug = 5;
-  bool has_parent_id = 6;
-  optional common.Uuid parent_id = 7;
+  bool has_parent_id = 7;
+  optional common.Uuid parent_id = 8;
 }
 
 message UpdatePageResponse {
