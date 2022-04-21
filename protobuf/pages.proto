@@ -115,7 +115,7 @@ message UpdatePageRequest {
   optional string slug = 5;
   bool has_parent_id = 7;
   optional common.Uuid parent_id = 8;
-  string role = 9;
+  optional string role = 9;
 }
 
 message UpdatePageResponse {
