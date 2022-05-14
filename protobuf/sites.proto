@@ -7,11 +7,12 @@ import "common.proto";
 option csharp_namespace = "ApiSpec.Grpc.Sites";
 
 service Service {
-  rpc CreateSite (CreateSiteRequest) returns (CreateSiteResponse);
   rpc GetSite (GetSiteRequest) returns (GetSiteResponse);
   rpc GetSiteBySlug (GetSiteBySlugRequest) returns (GetSiteBySlugResponse);
   rpc GetSites (GetSitesRequest) returns (GetSitesResponse);
   rpc CountSites (CountSitesRequest) returns (CountSitesResponse);
+
+  rpc CreateSite (CreateSiteRequest) returns (CreateSiteResponse);
   rpc UpdateSite (UpdateSiteRequest) returns (UpdateSiteResponse);
   rpc DeleteSite (DeleteSiteRequest) returns (DeleteSiteResponse);
 }
@@ -89,7 +90,6 @@ message UpdateSiteRequest {
 }
 
 message UpdateSiteResponse {
-
 }
 
 // DeleteSite
@@ -100,4 +100,3 @@ message DeleteSiteRequest {
 
 message DeleteSiteResponse {
 }
-
