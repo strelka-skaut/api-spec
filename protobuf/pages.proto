@@ -9,7 +9,7 @@ option csharp_namespace = "ApiSpec.Grpc.Pages";
 
 service Service {
   rpc GetPage (GetPageRequest) returns (GetPageResponse);
-  rpc GetPageBySiteAndSlug (GetPageBySiteAndSlugRequest) returns (GetPageBySiteAndSlugResponse);
+  rpc GetPageBySiteAndPath (GetPageBySiteAndPathRequest) returns (GetPageBySiteAndPathResponse);
   rpc GetPages (GetPagesRequest) returns (GetPagesResponse);
   rpc CountPages (CountPagesRequest) returns (CountPagesResponse);
 
@@ -42,15 +42,15 @@ message GetPageResponse {
   Page page = 1;
 }
 
-// GetPageBySiteAndSlug
+// GetPageBySiteAndPath
 
-message GetPageBySiteAndSlugRequest {
+message GetPageBySiteAndPathRequest {
   common.Uuid site_id = 1;
-  string page_slug = 2;
+  string path = 2;
 }
 
-message GetPageBySiteAndSlugResponse {
-  Page page = 1;
+message GetPageBySiteAndPathResponse {
+ Page page = 1;
 }
 
 // GetPages
