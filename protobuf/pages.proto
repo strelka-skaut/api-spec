@@ -32,21 +32,6 @@ message Page {
   string role = 9;
 }
 
-// CreatePage
-
-message CreatePageRequest {
-  string name = 1;
-  string content = 2;
-  common.Uuid site_id = 3;
-  string slug = 4;
-  optional common.Uuid parent_id = 5;
-  string role = 6;
-}
-
-message CreatePageResponse {
-  common.Uuid id = 1;
-}
-
 // GetPage
 
 message GetPageRequest {
@@ -90,6 +75,21 @@ message CountPagesRequest {
 
 message CountPagesResponse {
   int32 count = 1;
+}
+
+// CreatePage
+
+message CreatePageRequest {
+  string name = 1;
+  string content = 2;
+  common.Uuid site_id = 3;
+  string slug = 4;
+  optional common.Uuid parent_id = 5;
+  string role = 6;
+}
+
+message CreatePageResponse {
+  common.Uuid id = 1;
 }
 
 // UpdatePage

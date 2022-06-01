@@ -25,17 +25,6 @@ message Site {
   string slug = 3;
 }
 
-// CreateSite
-
-message CreateSiteRequest {
-  string name = 1;
-  string slug = 2;
-}
-
-message CreateSiteResponse {
-  common.Uuid id = 1;
-}
-
 // GetSite
 
 message GetSiteRequest {
@@ -78,6 +67,17 @@ message CountSitesRequest {
 
 message CountSitesResponse {
   int32 count = 1;
+}
+
+// CreateSite
+
+message CreateSiteRequest {
+  string name = 1;
+  string slug = 2;
+}
+
+message CreateSiteResponse {
+  common.Uuid id = 1;
 }
 
 // UpdateSite
